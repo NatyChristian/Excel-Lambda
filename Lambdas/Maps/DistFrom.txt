@@ -1,0 +1,21 @@
+Nom : DistFrom
+Formule : 
+LAMBDA(StartingCell,TargetCell,[for_horizontal_vertical_2_for_horizontal_vertical_diagonal_3_for_pythagor], LET(
+   \\LambdaName, "DistFrom",
+   RowStart, RowOfACellRef(StartingCell),
+   ColStart, ColumnOfACellRef(StartingCell),
+   RowEnd, RowOfACellRef(TargetCell),
+   ColEnd, ColumnOfACellRef(TargetCell),
+   SWITCH(IF(
+         ISOMITTED(
+            for_horizontal_vertical_2_for_horizontal_vertical_diagonal_3_for_pythagor
+         ),
+         1,
+         for_horizontal_vertical_2_for_horizontal_vertical_diagonal_3_for_pythagor
+      ),
+      1, ABS(RowStart - RowEnd) + ABS(ColStart - ColEnd),
+      2, MAX(ABS(RowStart - RowEnd), ABS(ColStart - ColEnd)),
+      3, SQRT(SUMSQ(ABS(RowStart - RowEnd), ABS(ColStart - ColEnd))),
+      "Give the output Type"
+   )
+))

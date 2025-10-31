@@ -1,0 +1,3 @@
+Nom : SubstituteArray
+Formule : 
+LAMBDA(Start,From,To,MAP(Start,LAMBDA(a,REDUCE(a,SEQUENCE(ROWS(TOCOL(From))),LAMBDA(b,c,SUBSTITUTE(b,INDEX(From,c),INDEX(To,c)))))))

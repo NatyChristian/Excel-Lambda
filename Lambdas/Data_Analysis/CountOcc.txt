@@ -1,0 +1,25 @@
+Nom : CountOcc
+Formule : 
+LAMBDA(character_sequence,character_to_be_replaced,[NonCaseSensitive], LET(
+   \\LambdaName, "TEXT_COUNT_OCC",
+   MAP(
+      character_sequence,
+      LAMBDA(a, LET(
+         x, IF(ISOMITTED(NonCaseSensitive), a, UPPER(a)),
+         (LEN(x)
+            - LEN(
+               SUBSTITUTE(
+                  x,
+                  IF(
+                     ISOMITTED(NonCaseSensitive),
+                     character_to_be_replaced,
+                     UPPER(character_to_be_replaced)
+                  ),
+                  ""
+               )
+            )
+            )
+            / LEN(character_to_be_replaced)
+      ))
+   )
+))

@@ -1,0 +1,26 @@
+Nom : AdjacentCell
+Formule : 
+LAMBDA(cell,radius,[for_normale_2_for_horizontale_and_verticale_3_for_hexagone], LET(
+   \\LambdaName, "AdjacentCell",
+   INDEX(
+      IF(
+         ISOMITTED(for_normale_2_for_horizontale_and_verticale_3_for_hexagone),
+         _A(cell, radius),
+         IF(
+            for_normale_2_for_horizontale_and_verticale_3_for_hexagone = 1,
+            _A(cell, radius),
+            IF(
+               for_normale_2_for_horizontale_and_verticale_3_for_hexagone = 2,
+               HVCell(cell, radius),
+               IF(
+                  for_normale_2_for_horizontale_and_verticale_3_for_hexagone = 3,
+                  HexaCell(cell, radius),
+                  "Type not valide"
+               )
+            )
+         )
+      ),
+      1,
+      1
+   )
+))

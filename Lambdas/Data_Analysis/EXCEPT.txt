@@ -1,0 +1,3 @@
+Nom : EXCEPT
+Formule : 
+LAMBDA(array,exclude,FILTER(array,NOT(ISNUMBER(XMATCH(array,exclude)))))

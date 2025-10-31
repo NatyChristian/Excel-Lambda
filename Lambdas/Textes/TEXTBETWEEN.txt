@@ -1,0 +1,3 @@
+Nom : TEXTBETWEEN
+Formule : 
+LAMBDA(text,starting_char,ending_char,[extreme], LET( withgreed,REGEXEXTRACT(text,starting_char&".*"&ending_char,1), withoutgreed,REGEXEXTRACT(text,starting_char&".*?"&ending_char,1), out,IF(extreme=1,withgreed,withoutgreed), out))

@@ -1,0 +1,3 @@
+Nom : Unpivot
+Formule : 
+LAMBDA(Array, LET( Vls,Array, rw,DROP(CHOOSECOLS(Vls,1),1), cl,DROP(CHOOSEROWS(Vls,1),,1), Data,DROP(Vls,1,1), sqs,SEQUENCE(ROWS(Data),COLUMNS(Data)), Rws,TOCOL(IF(sqs,rw)), Cls,TOCOL(IF(sqs,cl)), Datas,TOCOL(IF(sqs,Data)), out,HSTACK(Rws,Cls,Datas), out ))

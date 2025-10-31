@@ -1,0 +1,13 @@
+Nom : Base10ToABase
+Formule : 
+LAMBDA(Base10Values,ToBase, LET(
+   TobaseValue, LEN(ToBase),
+   signe, IF(Base10Values < 0, "-", ""),
+   absVals, ABS(Base10Values),
+   IF(
+      absVals >= TobaseValue,
+      Base10ToABase(INT(absVals / TobaseValue), ToBase),
+      ""
+   )
+      & MID(ToBase, MOD(absVals, TobaseValue) + 1, 1)
+))

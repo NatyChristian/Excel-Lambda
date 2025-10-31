@@ -1,0 +1,23 @@
+Nom : HexaCell
+Formule : 
+LAMBDA(cell,radius, LET(
+   \\LambdaName, "HexaCell",
+   _Add, IFERROR(
+      ADDRESS(
+         RowOfACellRef(cell) + SEQUENCE(2 * radius + 1, , -radius),
+         ColumnOfACellRef(cell) + SEQUENCE(, 2 * radius + 1, -radius),
+         4
+      ),
+      "---"
+   ),
+   _RowStart, RowOfACellRef(cell),
+   _COlStart, ColumnOfACellRef(cell),
+   _Rw, IFERROR(ABS(RowOfACellRef(_Add) - _RowStart), "---"),
+   _Cl, IFERROR(ABS(ColumnOfACellRef(_Add) - _COlStart), "---"),
+   _Cell, TOCOL(_Add),
+   _Valid, IFERROR(N(_Cl + _Rw <= radius), "---"),
+   _Test, TOCOL(_Valid),
+   _TabValid, FILTER(_Cell, (_Test <> 0) * (_Test <> "---")),
+   _Result, TEXTJOIN("-", , _TabValid),
+   _Result
+))

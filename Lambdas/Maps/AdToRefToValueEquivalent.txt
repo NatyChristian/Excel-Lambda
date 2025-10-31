@@ -1,0 +1,3 @@
+Nom : AdToRefToValueEquivalent
+Formule : 
+LAMBDA(Cells,Map,Values,[If_not_found], MAP(Cells,LAMBDA(x, LET( a,TOCOL(ADDRESS(ROW(Map),COLUMN(Map),4)), b,TOCOL(Values), c,ADDRESS(ROW(a),COLUMN(a),4), d,XLOOKUP(x,a,b,IF(ISOMITTED(If_not_found),"n/a",If_not_found)), d))))

@@ -1,0 +1,6 @@
+Nom : ExtractCardsValue
+Formule : 
+LAMBDA(Cards, LET(
+   \\LambdaName, "CARDS_EXTRACT_CARDS_VALUE",
+   MAP(Cards, LAMBDA(a, REGEXEXTRACT(a, "(10|[A23456789JKQ])")))
+))

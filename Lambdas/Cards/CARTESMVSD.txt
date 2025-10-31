@@ -1,0 +1,3 @@
+Nom : CARTESMVSD
+Formule : 
+LAMBDA(cartes,[nombres], LET(    \\LambdaName, "CARTESMVSD",    _Valeurs, LEFT(TOCOL(cartes)),    _UniqueValeurs, UNIQUE(_Valeurs),    _Result, IF(       ISOMITTED(nombres),       LET(          a, _Valeurs,          b, _UniqueValeurs,          c, cartes,          out, MAP(b, LAMBDA(_x, TEXTJOIN("|", , DWR(FILTER(c, a = _x), , 1)))),          out       ),       LET(          a, _Valeurs,          b, _UniqueValeurs,          c, TOCOL(cartes),          count, MAP(b, LAMBDA(_x, SUM(--(_x = a)))),          Valid, FILTER(b, count >= nombres),          combination, MAP(Valid, LAMBDA(_x, TEXTJOIN("|", , DWR(FILTER(c, a = _x), nombres, 1)))),          combination       )    ),    _Result&"" ))

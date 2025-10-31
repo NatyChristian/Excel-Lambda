@@ -1,0 +1,16 @@
+Nom : ReverseArray
+Formule : 
+LAMBDA(array,_1_for_up_down_2_for_left_right, LET(
+   \\LambdaName, "ARRAY_REVERSE_ARRAY",
+   MAKEARRAY(
+      ROWS(array),
+      COLUMNS(array),
+      LAMBDA(r,c,
+         IF(
+            _1_for_up_down_2_for_left_right = 1,
+            INDEX(array, ROWS(array) - r + 1, c),
+            INDEX(array, r, COLUMNS(array) - c + 1)
+         )
+      )
+   )
+))

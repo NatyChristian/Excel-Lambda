@@ -1,0 +1,3 @@
+Nom : ShiftWord
+Formule : 
+LAMBDA(shift,word,    MAP(shift,word,LAMBDA(s,w,    LET(    _Step1, MID(w, SEQUENCE(LEN(w)), 1),    _Step2, UNICODE(_Step1),    _Step3, XLOOKUP(_Step2, {65;97}, {65;97}, , -1),    _Step4, MOD(_Step2 - _Step3 + s, 26) + _Step3,    _Step5, IF(EXACT(LOWER(_Step1), UPPER(_Step1)), _Step1, UNICHAR(_Step4)),    _Result, CONCAT(_Step5),    _Result ))))

@@ -1,0 +1,24 @@
+Nom : HVCell
+Formule : 
+LAMBDA(cell,radius, LET(
+   \\LambdaName, "HVCell",
+   _Row, TOCOL(
+      ADDRESS(
+         RowOfACellRef(cell) + SEQUENCE(2 * radius + 1, , -radius),
+         ColumnOfACellRef(cell),
+         4
+      ),
+      3
+   ),
+   _Col, TOCOL(
+      ADDRESS(
+         RowOfACellRef(cell),
+         ColumnOfACellRef(cell) + SEQUENCE(2 * radius + 1, , -radius),
+         4
+      ),
+      3
+   ),
+   _Stack, UNIQUE(VSTACK(_Col, _Row)),
+   _Result, TEXTJOIN("-", , _Stack),
+   _Result
+))

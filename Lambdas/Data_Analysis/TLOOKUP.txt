@@ -1,0 +1,3 @@
+Nom : TLOOKUP
+Formule : 
+LAMBDA(Target_Row,Target_Col,Data,[If_not_Found], LET( _Data,DROP(Data,1,1), _Rw,DROP(TAKE(Data,,1),1), _Cl,DROP(TAKE(Data,1),,1), IFERROR(INDEX(_Data,XMATCH(Target_Row,_Rw),XMATCH(Target_Col,_Cl)), IF(ISOMITTED(If_not_Found),"n/a",If_not_Found))))

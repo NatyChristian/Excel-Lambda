@@ -1,0 +1,11 @@
+Nom : OuterDateRange
+Formule : 
+LAMBDA(start_date,end_date, LET(
+   \\LambdaName, "Date_OuterDateRange",
+   _Start, DATE(YEAR(start_date), 1, 1),
+   _End, DATE(YEAR(end_date), 12, 31),
+   _Part1, SEQUENCE(start_date - _Start + 1, , _Start),
+   _Part2, SEQUENCE(_End - end_date + 1, , end_date),
+   _Result, VSTACK("Outer date", _Part1, "---------------", _Part2),
+   _Result
+))

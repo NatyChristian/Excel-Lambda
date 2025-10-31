@@ -1,0 +1,3 @@
+Nom : TEXTEXTRACT
+Formule : 
+LAMBDA(extract_from,texts_to_extract,ARRAYSOFARRAYS(extract_from,LAMBDA(x,REGEXEXTRACT(x,TEXTJOIN("|",,texts_to_extract),1))))

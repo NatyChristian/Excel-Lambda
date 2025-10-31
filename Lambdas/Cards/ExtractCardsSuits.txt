@@ -1,0 +1,3 @@
+Nom : ExtractCardsSuits
+Formule : 
+LAMBDA(Cards,MAP(Cards,LAMBDA(a,REGEXEXTRACT(a,"[????]"))))

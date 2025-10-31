@@ -1,0 +1,3 @@
+Nom : Flate
+Formule : 
+LAMBDA(texte, LET(\\LambdaName, "T_Flate", MID(texte, SEQUENCE(LEN(texte)), 1)))

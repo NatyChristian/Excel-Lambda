@@ -1,0 +1,12 @@
+Nom : ColumnOfACellRef
+Formule : 
+LAMBDA(adresse, LET(
+   result, MAP(
+      REGEXEXTRACT(adresse,"[A-Za-z]+"),
+      LAMBDA(ca, LET(
+         s, SEQUENCE(LEN(ca)),
+         SUM((CODE(MID(UPPER(ca), s, 1)) - 64) * 26 ^ -SORT(1 - s))
+      ))
+   ),
+   IF(COUNTA(adresse) = 1, --CONCAT(result), result)
+))

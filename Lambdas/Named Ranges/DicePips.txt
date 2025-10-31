@@ -1,0 +1,6 @@
+Nom : DicePips
+Formule : 
+LAMBDA(dices, LET(
+   \\LambdaName, "T_Pips",
+   MAP(dices, LAMBDA(a, UNICODE(a) - 9855))
+))

@@ -1,0 +1,6 @@
+Nom : RowOfACellRef
+Formule : 
+LAMBDA(cell_ref, LET(
+   \\LambdaName, "ARRAY_ROW_OF_CELL_REF",
+   MAP(cell_ref, LAMBDA(a, --REGEXEXTRACT(a, "\d+")))
+))

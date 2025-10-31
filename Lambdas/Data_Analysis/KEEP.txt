@@ -1,0 +1,3 @@
+Nom : KEEP
+Formule : 
+LAMBDA(array,exclude,FILTER(array,ISNUMBER(XMATCH(array,exclude))))

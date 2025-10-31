@@ -1,0 +1,22 @@
+Nom : DWR
+Formule : 
+LAMBDA(Value,[take],[List], LET(
+   rw, SUM(COMBIN(COUNTA(Value), SEQUENCE(COUNTA(Value)))),
+   Cl, COUNTA(Value),
+   Seqcl, 2 ^ (SEQUENCE(, Cl) - 1),
+   StartArray, --MID(REPT(0, Cl), SEQUENCE(, Cl), 1),
+   Tab, VSTACK(
+      StartArray,
+      MOD(INT(MAKEARRAY(rw, Cl, LAMBDA(r,c, r)) / Seqcl), 2)
+   ),
+   Sm, BYROW(Tab, SUM),
+   RectTab, IF(Tab, SEQUENCE(, Cl), 0),
+   Ind, IF(RectTab, INDEX(Value, RectTab), NA()),
+   OutOne, IF(
+      ISOMITTED(List),
+      IFNA(Ind, "n/a"),
+      BYROW(Ind, LAMBDA(a, TEXTJOIN("-", , IFNA(a, ""))))
+   ),
+   Out, IF(ISOMITTED(take), OutOne, FILTER(OutOne, Sm = MEDIAN(take, 1, Cl))),
+   Out
+))

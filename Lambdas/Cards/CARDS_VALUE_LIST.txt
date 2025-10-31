@@ -1,0 +1,17 @@
+Nom : CARDS_VALUE_LIST
+Formule : 
+LAMBDA([A_Position_1_for_Low_2_for_High_3_for_Both], LET(
+   \\LambdaName, "CARDS_VALUE_LIST",
+   a, A_Position_1_for_Low_2_for_High_3_for_Both,
+   b, {2;3;4;5;6;7;8;9;10;"J";"Q";"K"},
+   ""
+      & IF(
+         ISOMITTED(a),
+         VSTACK("A", b),
+         IF(
+            a = 1,
+            VSTACK("A", b),
+            IF(a = 2, VSTACK(b, "A"), IF(a = 3, VSTACK("AU", b, "AD"), VSTACK("A", b)))
+         )
+      )
+))

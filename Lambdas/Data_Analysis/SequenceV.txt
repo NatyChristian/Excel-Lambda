@@ -1,0 +1,3 @@
+Nom : SequenceV
+Formule : 
+LAMBDA(rows,starts,step,         LET(array,IF(COLUMNS(step)=COLUMNS(starts),step,SEQUENCE(,COUNTA(starts),step,0)),             cal,MAP(starts,array,SUM),             out,VSTACK(starts,IF(rows=2,cal,SequenceV(rows-1,cal,step))),             out))

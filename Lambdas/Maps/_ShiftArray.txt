@@ -1,0 +1,53 @@
+Nom : _ShiftArray
+Formule : 
+LAMBDA(arr,[rwShift],[ColShift],[Wrap],[fill], LET(
+   \\LambdaName, "_ShiftArray",
+   _fill, IF(ISOMITTED(fill), "X", fill),
+   VertShift, IF(
+      rwShift,
+      IF(
+         rwShift,
+         VSTACK(
+            IF(
+               Wrap,
+               TAKE(arr, -rwShift),
+               IF(SEQUENCE(rwShift, COLUMNS(arr)), _fill)
+            ),
+            DROP(arr, -rwShift)
+         ),
+         VSTACK(
+            DROP(arr, -rwShift),
+            IF(
+               Wrap,
+               TAKE(arr, -rwShift),
+               IF(SEQUENCE(-rwShift, COLUMNS(arr)), _fill)
+            )
+         )
+      ),
+      arr
+   ),
+   HorShift, IF(
+      ColShift,
+      IF(
+         ColShift > 0,
+         HSTACK(
+            IF(
+               Wrap,
+               TAKE(VertShift, , -ColShift),
+               IF(SEQUENCE(ROWS(VertShift), ColShift), _fill)
+            ),
+            DROP(VertShift, , -ColShift)
+         ),
+         HSTACK(
+            DROP(VertShift, , -ColShift),
+            IF(
+               Wrap,
+               TAKE(VertShift, , -ColShift),
+               IF(SEQUENCE(ROWS(VertShift), -ColShift), _fill)
+            )
+         )
+      ),
+      VertShift
+   ),
+   HorShift
+))

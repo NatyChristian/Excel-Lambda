@@ -1,0 +1,11 @@
+Nom : MinLookup
+Formule : 
+LAMBDA(lookup_array,return_array,[If_not_found],
+   XLOOKUP(
+      -10^9,
+      lookup_array,
+      return_array,
+      IF(ISOMITTED(If_not_found), "n/a", If_not_found),
+      1
+   )
+)

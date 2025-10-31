@@ -1,0 +1,3 @@
+Nom : Pythagore
+Formule : 
+LAMBDA(a,b,SQRT(a^2+b^2))

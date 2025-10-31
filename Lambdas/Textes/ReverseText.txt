@@ -1,0 +1,8 @@
+Nom : ReverseText
+Formule : 
+LAMBDA(texte, LET(
+   \\LambdaName, "T_Reverse",
+   _Step1, Flate(texte),
+   _Result, INDEX(_Step1, SEQUENCE(LEN(texte), , LEN(texte), -1)),
+   _Result
+))

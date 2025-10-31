@@ -1,0 +1,3 @@
+Nom : ReptArray
+Formule : 
+LAMBDA(arr,n,[incol], LET(     numRows, ROWS(arr),     numCols, COLUMNS(arr),     totalRows, n * numRows,     totalCols, n * numCols,     inrows,MAKEARRAY(totalRows, numCols, LAMBDA(ligne,col, INDEX(arr, MOD(ligne - 1, numRows) + 1, col))),     incols,MAKEARRAY(numRows, totalCols, LAMBDA(ligne,col, INDEX(arr, ligne, MOD(col - 1, numCols) + 1))),     IF(ISOMITTED(incol),inrows,CHOOSE(1+incol,inrows,incols)) ))

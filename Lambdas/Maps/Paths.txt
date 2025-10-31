@@ -1,0 +1,63 @@
+Nom : Paths
+Formule : 
+LAMBDA(Start,Mvts,[Min_Col],[Max_Col],[Min_Row],[Max_Row],[Paths],[Cols], LET(
+   s, Start,
+   Micol, IF(ISOMITTED(Min_Col), 1, Min_Col),
+   Macol, IF(ISOMITTED(Max_Col), 16384, Max_Col),
+   Mirow, IF(ISOMITTED(Min_Row), 1, Min_Row),
+   Marow, IF(ISOMITTED(Max_Row), 1048576, Max_Row),
+   P, IF(ISOMITTED(Paths), 0, 1),
+   c, IF(ISOMITTED(Cols), 0, Cols),
+   lenght, VALUE(
+      CONCAT(
+         FILTER(
+            MID(Mvts, SEQUENCE(LEN(Mvts)), 1),
+            NOT(
+               ISNUMBER(
+                  XMATCH(
+                     MID(Mvts, SEQUENCE(LEN(Mvts)), 1),
+                     {"?","?","?","?","?","?","?","?"}
+                  )
+               )
+            )
+         )
+      )
+   ),
+   vector, TEXTSPLIT(Mvts, SEQUENCE(10, , 0), , 1),
+   adr, XLOOKUP(
+      vector,
+      {"?","?","?","?","?","?","?","?"},
+      {0,-1,0,1,-1,-1,1,1}
+   ),
+   adc, XLOOKUP(
+      vector,
+      {"?","?","?","?","?","?","?","?"},
+      {-1,0,1,0,-1,1,1,-1}
+   ),
+   out, IF(
+      P,
+      SCAN(
+         s,
+         SEQUENCE(lenght),
+         LAMBDA(a,v,
+            ADDRESS(
+               MEDIAN(Mirow, Marow, RowOfACellRef(a) + adr),
+               MEDIAN(Micol, Macol, ColumnOfACellRef(a) + adc),
+               4
+            )
+         )
+      ),
+      REDUCE(
+         Start,
+         SEQUENCE(lenght),
+         LAMBDA(a,v,
+            ADDRESS(
+               MEDIAN(Mirow, Marow, RowOfACellRef(a) + adr),
+               MEDIAN(Micol, Macol, ColumnOfACellRef(a) + adc),
+               4
+            )
+         )
+      )
+   ),
+   IF(c, TRANSPOSE(out), out)
+))

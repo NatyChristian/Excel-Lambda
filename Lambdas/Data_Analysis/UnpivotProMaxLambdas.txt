@@ -1,0 +1,57 @@
+=LAMBDA(Data,[from],[to],
+   LET(
+      _Rfrom, IF(ISOMITTED(from), 2, from),
+      _Rto, IF(ISOMITTED(to), COLUMNS(Data), to),
+      _Rows, ROWS(Data),
+      _Length, _Rto - _Rfrom + 1,
+
+      _DataTakken,
+         TOCOL(
+            TAKE(
+               DROP(Data, , _Rfrom - 1),
+               ,
+               _Rto - _Rfrom + 1
+            )
+         ),
+
+      _FlateRows,
+         ROUNDUP(SEQUENCE(_Length * _Rows) / _Length, 0),
+
+      _FirstPart,
+         IFERROR(
+            INDEX(
+               TAKE(Data, , _Rfrom - 1),
+               _FlateRows,
+               SEQUENCE(, _Rfrom - 1)
+            ),
+            "n/a"
+         ),
+
+      _SecondPart,
+         IFERROR(
+            INDEX(
+               DROP(Data, , _Rto),
+               _FlateRows,
+               SEQUENCE(, COLUMNS(Data) - _Rto)
+            ),
+            "n/a"
+         ),
+
+      _Result,
+         IF(
+            ISNUMBER(XMATCH("n/a", TOCOL(_FirstPart))),
+            IF(
+               ISNUMBER(XMATCH("n/a", TOCOL(_SecondPart))),
+               _DataTakken,
+               HSTACK(_DataTakken, _SecondPart)
+            ),
+            IF(
+               ISNUMBER(XMATCH("n/a", TOCOL(_SecondPart))),
+               HSTACK(_FirstPart, _DataTakken),
+               HSTACK(_FirstPart, _DataTakken, _SecondPart)
+            )
+         ),
+
+      _Result
+   )
+)
